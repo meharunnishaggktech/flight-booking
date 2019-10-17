@@ -13,8 +13,8 @@
                               <select formControlName="fromCity" id="job" name="field4">
                                       <optgroup label="From City">
                                           <option *ngFor="let city of cities; let i = index" [value]="city.city">{{city.city}}</option>
-                                             
-                                      
+
+
                                       </optgroup>
                               </select>
                               <!--
@@ -26,13 +26,13 @@
                                       (inputChanged)='onChangeSearch($event)'
                                       (inputFocused)='onFocused($event)'
                                       [itemTemplate]="itemTemplate"
-                                      [notFoundTemplate]="notFoundTemplate">                                 
+                                      [notFoundTemplate]="notFoundTemplate">
                                     </ng-autocomplete>
-                                     
+
                                     <ng-template #itemTemplate let-item>
                                     <a [innerHTML]="item.city"></a>
                                     </ng-template>
-                                     
+
                                     <ng-template #notFoundTemplate let-notFound>
                                     <div [innerHTML]="notFound"></div>
                                     </ng-template>
@@ -44,14 +44,14 @@
                               <select id="job" formControlName="toCity" name="field4">
                                       <optgroup label="To City">
                                          <option *ngFor="let city of cities; let i = index" [value]="city.city">{{city.city}}</option>
-                                             
+
                                       </optgroup>
                               </select>
                               <div *ngIf="submitted && user.toCity.errors" class="invalid-feedback errors">
                                 <div *ngIf="user.toCity.errors.required" class="errors">To City is required</div>
                              </div>
                               <div class="label-text">DEPARTURE :</div>
-                              
+
                               <input type="text" formControlName="departure" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
                                 <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
                                 <div *ngIf="submitted && user.departure.errors" class="invalid-feedback errors">
@@ -61,7 +61,7 @@
                               <input type="text"  [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
                               <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
 
-                             
+
                              </fieldset>
 
                               <input type="submit" value="Search" />
@@ -77,30 +77,40 @@
   <div class="container">
       <div class="container-body">
           <div class="middle-container-body">
-              
 
-              <aside class="left-services" *ngFor="let flightInfo of flightsData; let i = index">
+            <h4>Avilable Flight Information :</h4>
+              <aside class="left-services" *ngFor="let flightInfo of flightsData | paginate: { id: 'listing_pagination',
+              itemsPerPage: 5,
+              currentPage: page,
+              totalItems: totalRec }">
                   <div class="left-service-content"  *ngIf="flightInfo.status != 500;else other_content">{{flightInfo.status}}
                       <div class="top-text">
                               <div class="flight-search-result">
                                       <ul>
-                                              <li><a href="" class="active menu-items"><img src="{{flightInfo.logo}}" class="flight-logo"></a></li>
-                                              <li><a href="" class="menu-items"><b>{{flightInfo.airline_name}}</b></a>
-                                                   <a href="" class="menu-items">{{flightInfo.flight_number}}</a>
+                                              <li><a href="" class="active menu-items">
+                                                  <img src="{{flightInfo.logo}}" class="flight-logo"></a>
                                               </li>
-                                              <li><a href="" class="menu-items"><b>{{flightInfo.duration}}</b></a>
-                                                      <a href="" class="menu-items">{{flightInfo.fromCity}}</a>
-                                                 </li>
-                                                 <li><a href="" class="menu-items"><b>Duration {{flightInfo.duration}} 
+                                              <li><a href="" class="menu-items "><div class="font-size"><b>{{flightInfo.airline_name}}</b></div></a>
+                                                   <a href="" class="menu-items"><div class="font-size-small">{{flightInfo.flight_number}}</div></a>
+                                              </li>
+                                             
+                                                 <li><a href="" class="menu-items"><div class="font-size"></div><b>{{flightInfo.fromCity}}
 
 </b></a>
-                                                      <a href="" class="menu-items">Stops {{flightInfo.noofstops}} </a>
+<a href="" class="menu-items"><div class="font-size-small"> From City</div></a>
+
                                                  </li>
-                                                <li> <!-- <a href="" class="menu-items"><b>00:40+1 DAY</b></a> -->
-                                                      <a href="" class="menu-items">{{flightInfo.toCity}}</a>
+                                                 <li><a href="" class="menu-items"><div class="font-size"><b>{{flightInfo.duration}} Hrs
+
+                                                  </b></div></a>
+                                                  <a href="" class="menu-items"><div class="font-size-small">Duration</div></a>
+
+                                                                                                   </li>
+                                                <li>  <a href="" class="menu-items"><b> {{flightInfo.toCity}}</b></a>
+                                                      <a href="" class="menu-items"><div class="font-size-small">To City</div></a>
                                                  </li>
                                               <li><a href="" class="menu-items"><b>₹ {{flightInfo.price}}</b></a></li>
-                                              <li><a  [routerLink]="['/conform-booking', flightInfo.id]" class="button book-now" >BOOK NOW</a></li>
+                                              <li><button  [routerLink]="['/conform-booking', flightInfo.id]" class="button book-now" >BOOK NOW</button></li>
                                       </ul>
                               </div>
                        </div>
@@ -108,11 +118,13 @@
 
 
                   </div>
-                  <ng-template #other_content>Record not found!...</ng-template>  
 
+                  <ng-template #other_content>Record not found!...</ng-template>
               </aside>
+              <div class="pagination-div">
+                <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true"  (pageChange)="page = $event"></pagination-controls>
 
-              
+              </div>
 
           </div>
       </div>
@@ -120,6 +132,6 @@
   <div class="clear"></div>
   <!--Footer-->
   <app-footer></app-footer>
-  
+
 </main>
 

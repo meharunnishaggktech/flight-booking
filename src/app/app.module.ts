@@ -15,7 +15,9 @@ import { HeaderComponent } from './components/layouts/header/header.component';
 import { FooterComponent } from './components/layouts/footer/footer.component';
 import { ConfirmBookingComponent } from './components/confirm-booking/confirm-booking.component';
 import { ConfirmTicketComponent } from './components/confirm-ticket/confirm-ticket.component';
- 
+import {NgxPaginationModule} from 'ngx-pagination';
+
+
 
 @NgModule({
   declarations: [
@@ -24,19 +26,20 @@ import { ConfirmTicketComponent } from './components/confirm-ticket/confirm-tick
     HeaderComponent,
     FooterComponent,
     ConfirmBookingComponent,
-    ConfirmTicketComponent
+    ConfirmTicketComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    OwlDateTimeModule, 
+    OwlDateTimeModule,
     OwlNativeDateTimeModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

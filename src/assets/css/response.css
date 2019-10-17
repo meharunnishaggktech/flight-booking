@@ -59,13 +59,16 @@
     width: 100%;
   }
   .left-service-content{
-    height: 232px;
+    height: 472px;
   }
   .book-now{
-    margin-left: 47px;
+    margin-left: 0px;
   }
   .flight-search-result ul li a {
     padding: 5px 18px;
+}
+.flight-search-result ul li:last-child {
+  float: right;
 }
 }
 @media screen and (max-width: 480px) {
@@ -87,4 +90,9 @@
   .get-more {
     padding-left: 1px;
   }
+  .flight-search-result ul li {
+    /* float: left; */
+    padding-top: 4px;
+    width: 100%;
+}
 }

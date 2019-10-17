@@ -18,6 +18,10 @@ export class SearchFlightsComponent implements OnInit {
   result:  any = {};
   cities:  Object[];
   flightsData: Object[];
+  config: any;
+  collection = { count: 60, flightsData: [] };
+  items = [];
+  pageOfItems: Array<any>;
 
   /**
  * AddsellersComponent constructor.
@@ -26,7 +30,29 @@ export class SearchFlightsComponent implements OnInit {
  * @param _router Router
  * @param _cityService CityService
  */
-constructor(private formBuilder: FormBuilder, private _router: Router, private _cityService : CityService, private _flightDataService : FlightDataService) {}
+constructor(private formBuilder: FormBuilder, private _router: Router, private _cityService : CityService, private _flightDataService : FlightDataService) {
+
+      //Create dummy data
+      for (var i = 0; i < this.collection.count; i++) {
+        this.collection.flightsData.push(
+          {
+            id: i + 1,
+            value: "items number " + (i + 1)
+          }
+        );
+      }
+
+      this.config = {
+        itemsPerPage: 2,
+        currentPage: 1,
+        totalItems: this.collection.count
+    };
+}
+
+pageChanged(event){ alert(event);
+  this.config.currentPage = event;
+}
+
 
 keyword = 'city';
 
@@ -40,10 +66,17 @@ keyword = 'city';
   //get city data
   this._cityService.viewCityService().subscribe( response => {
     this.cities = response;
-    console.log(this.cities);
   })
 
+  //pagination
+  this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
+
   }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+}
 
   // convenience getter for easy access to form fields
  get user() { return this.registerForm.controls; }
@@ -60,7 +93,7 @@ keyword = 'city';
     return [mnth, day, date.getFullYear()].join("/");
   }
 
-  this._flightDataService.viewFlightService().subscribe(response => { 
+  this._flightDataService.viewFlightService().subscribe(response => {
 
     var resultFlightData = filterData(this.registerForm.value.fromCity, this.registerForm.value.toCity, convert(dateConverter));
 
@@ -79,4 +112,6 @@ keyword = 'city';
     }
   });
 }
+
+
 }
