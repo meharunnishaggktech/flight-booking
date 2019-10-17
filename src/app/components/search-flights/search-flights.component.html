@@ -1,0 +1,125 @@
+
+<main>
+  <app-header></app-header>
+  <div class="clear"></div>
+  <!--top body-->
+  <div class="container">
+      <div class="topbanner-container">
+          <div class="topbanner-text">
+              <div class="">
+                     <div class="form-style-5">
+                              <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)" method="POST">
+                              <fieldset><div class="label-text">FROM :</div>
+                              <select formControlName="fromCity" id="job" name="field4">
+                                      <optgroup label="From City">
+                                          <option *ngFor="let city of cities; let i = index" [value]="city.city">{{city.city}}</option>
+                                             
+                                      
+                                      </optgroup>
+                              </select>
+                              <!--
+                              <div class="ng-autocomplete" >
+                                    <ng-autocomplete formControlName="fromCity"
+                                      [data]="cities"
+                                      [searchKeyword]="keyword"
+                                      (selected)='selectEvent($event)'
+                                      (inputChanged)='onChangeSearch($event)'
+                                      (inputFocused)='onFocused($event)'
+                                      [itemTemplate]="itemTemplate"
+                                      [notFoundTemplate]="notFoundTemplate">                                 
+                                    </ng-autocomplete>
+                                     
+                                    <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.city"></a>
+                                    </ng-template>
+                                     
+                                    <ng-template #notFoundTemplate let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                    </div>-->
+                              <div *ngIf="submitted && user.fromCity.errors" class="invalid-feedback errors">
+                                <div *ngIf="user.fromCity.errors.required" class="errors">From City is required</div>
+                             </div>
+                              <div class="label-text">TO :</div>
+                              <select id="job" formControlName="toCity" name="field4">
+                                      <optgroup label="To City">
+                                         <option *ngFor="let city of cities; let i = index" [value]="city.city">{{city.city}}</option>
+                                             
+                                      </optgroup>
+                              </select>
+                              <div *ngIf="submitted && user.toCity.errors" class="invalid-feedback errors">
+                                <div *ngIf="user.toCity.errors.required" class="errors">To City is required</div>
+                             </div>
+                              <div class="label-text">DEPARTURE :</div>
+                              
+                              <input type="text" formControlName="departure" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
+                                <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                                <div *ngIf="submitted && user.departure.errors" class="invalid-feedback errors">
+                                  <div *ngIf="user.departure.errors.required" class="errors">To Departure is required</div>
+                               </div>
+                              <div class="label-text">RETURN :</div>
+                              <input type="text"  [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
+                              <owl-date-time [pickerType]="'calendar'" #dt4></owl-date-time>
+
+                             
+                             </fieldset>
+
+                              <input type="submit" value="Search" />
+
+                              </form>
+                              </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <!--body part-->
+  <div class="container">
+      <div class="container-body">
+          <div class="middle-container-body">
+              
+
+              <aside class="left-services" *ngFor="let flightInfo of flightsData; let i = index">
+                  <div class="left-service-content"  *ngIf="flightInfo.status != 500;else other_content">{{flightInfo.status}}
+                      <div class="top-text">
+                              <div class="flight-search-result">
+                                      <ul>
+                                              <li><a href="" class="active menu-items"><img src="{{flightInfo.logo}}" class="flight-logo"></a></li>
+                                              <li><a href="" class="menu-items"><b>{{flightInfo.airline_name}}</b></a>
+                                                   <a href="" class="menu-items">{{flightInfo.flight_number}}</a>
+                                              </li>
+                                              <li><a href="" class="menu-items"><b>{{flightInfo.duration}}</b></a>
+                                                      <a href="" class="menu-items">{{flightInfo.fromCity}}</a>
+                                                 </li>
+                                                 <li><a href="" class="menu-items"><b>Duration {{flightInfo.duration}} 
+
+</b></a>
+                                                      <a href="" class="menu-items">Stops {{flightInfo.noofstops}} </a>
+                                                 </li>
+                                                <li> <!-- <a href="" class="menu-items"><b>00:40+1 DAY</b></a> -->
+                                                      <a href="" class="menu-items">{{flightInfo.toCity}}</a>
+                                                 </li>
+                                              <li><a href="" class="menu-items"><b>₹ {{flightInfo.price}}</b></a></li>
+                                              <li><a  [routerLink]="['/conform-booking', flightInfo.id]" class="button book-now" >BOOK NOW</a></li>
+                                      </ul>
+                              </div>
+                       </div>
+
+
+
+                  </div>
+                  <ng-template #other_content>Record not found!...</ng-template>  
+
+              </aside>
+
+              
+
+          </div>
+      </div>
+  </div>
+  <div class="clear"></div>
+  <!--Footer-->
+  <app-footer></app-footer>
+  
+</main>
+
