@@ -13,7 +13,7 @@ export class ConfirmBookingComponent implements OnInit {
 
   userForm: FormGroup;
   submitted = false;
-  flightsData : [];
+  flightsData :  {};
   firstName: string = "Mehar";
   lastName: string = "Nisha";
   email: string = "mehar@gmail.com";
@@ -28,18 +28,18 @@ export class ConfirmBookingComponent implements OnInit {
       mobile: ['', Validators.required]
   });
 
-  //get city data
+  //get flight data
   this._flightDataService.getFlightDetailsService().subscribe( response => {
     var flightId =  this._route.snapshot.paramMap.get('id');;
     var resultFlightData = filterData(flightId);
+
 
     function filterData(flightId) {
       return response.filter(object => {
         return object['id'] == flightId ;
       });
     }if(resultFlightData.length!=0) {
-      this.flightsData = resultFlightData;
-     
+      this.flightsData = resultFlightData[0];
     }
 
   })

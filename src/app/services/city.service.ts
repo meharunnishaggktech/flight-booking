@@ -17,9 +17,9 @@ export class CityService {
    */
   public viewCityService(): Observable<any>{
 
-    return this._http.get(this.configUrl,
-    {
-     })
-    
+    return this._http.get(this.configUrl)
+    .map((res:any) => res)
+    .catch((error) => error);
+
   }
 }
