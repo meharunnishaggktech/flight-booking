@@ -17,7 +17,7 @@
 
                                       </optgroup>
                               </select>
-                              <!--
+<!--
                               <div class="ng-autocomplete" >
                                     <ng-autocomplete formControlName="fromCity"
                                       [data]="cities"
@@ -93,7 +93,7 @@
                                               <li><a href="" class="menu-items "><div class="font-size"><b>{{flightInfo.airline_name}}</b></div></a>
                                                    <a href="" class="menu-items"><div class="font-size-small">{{flightInfo.flight_number}}</div></a>
                                               </li>
-                                             
+
                                                  <li><a href="" class="menu-items"><div class="font-size"></div><b>{{flightInfo.fromCity}}
 
 </b></a>
@@ -121,8 +121,8 @@
 
                   <ng-template #other_content>Record not found!...</ng-template>
               </aside>
-              <div class="pagination-div">
-                <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true"  (pageChange)="page = $event"></pagination-controls>
+              <div class="pagination-div" >
+                <pagination-controls   id="listing_pagination" maxSize="5" directionLinks="true"  (pageChange)="page = $event"></pagination-controls>
 
               </div>
 

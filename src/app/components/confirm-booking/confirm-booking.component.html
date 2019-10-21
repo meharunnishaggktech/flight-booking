@@ -10,21 +10,21 @@
 
                                         <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)" method="POST">
                                              <div class="label-text">First Name :</div>
-                                                    <input type="text" formControlName="firstName" name="firstName" id="date_ex" [value]="firstName"  placeholder="Your First Name *">
-                                                    <div *ngIf="submitted && user.firstName.errors" class="invalid-feedback errors">
+                                                    <input type="text" formControlName="firstName" name="firstName" id="date_ex" required  placeholder="Your First Name *">
+                                                    <div *ngIf="submitted && user.firstName.errors" class="errors">
                                                             <div *ngIf="user.firstName.errors.required" class="errors">First Name is required</div></div>
                                                     <div class="label-text">Last Name :</div>
-                                                    <input type="text"formControlName="LastName" name="LastName" id="date_ex" [value]="lastName" placeholder="Your Last Name *">
-                                                    <div *ngIf="submitted && user.LastName.errors" class="invalid-feedback errors">
+                                                    <input type="text"formControlName="LastName" name="LastName" id="date_ex"  placeholder="Your Last Name *">
+                                                    <div *ngIf="submitted && user.LastName.errors" class="errors">
                                                             <div *ngIf="user.LastName.errors.required" class="errors">Last Name is required</div></div>
                                                     <div class="label-text">Email :</div>
 
-                                                    <input type="text" formControlName="email" name="email" id="date_ex" [value]="email"  placeholder="Your Email *">
-                                                    <div *ngIf="submitted && user.email.errors" class="invalid-feedback errors">
+                                                    <input type="text" formControlName="email" name="email" id="date_ex"   placeholder="Your Email *">
+                                                    <div *ngIf="submitted && user.email.errors" class="errors">
                                                             <div *ngIf="user.email.errors.required" class="errors">Email is required</div></div>
                                                     <div class="label-text">Mobile :</div>
                                                     <input type="text" formControlName="mobile" name="mobile" id="date_ex"  placeholder="Your Mobile *">
-                                                    <div *ngIf="submitted && user.mobile.errors" class="invalid-feedback errors">
+                                                    <div *ngIf="submitted && user.mobile.errors" class="errors">
                                                 <div *ngIf="user.mobile.errors.required" class="errors">Mobile is required</div></div>
                                                 <input type="submit" value="Submit" />
 
@@ -41,19 +41,18 @@
                                                     <h4>Flight Information</h4>
 
                                                     <ul>
-                                                            <li><a href=""><b>{{flightsData.airline_name}}</b></a>
-                                                                 <a href="" class="menu-items">{{flightsData.flight_number}}</a>
+                                                            <li><a href=""><b>{{airline_name }}</b></a>
+                                                                 <a href="" class="menu-items">{{flight_number}}</a>
                                                             </li>
-                                                            <li><a href="" class="menu-items"><b>{{flightsData.duration}} Hr</b></a>
-                                                                    <a href="" class="menu-items">{{flightsData.fromCity}}</a>
+                                                            <li><a href="" class="menu-items"><b>{{duration}} Hr</b></a>
+                                                                    <a href="" class="menu-items">{{fromCity}}</a>
                                                                </li>
 
                                                                <li>
-
                                                                     <a href="" class="menu-items">Non-stop</a>
-                                                                    <a href="" class="menu-items">{{flightsData.toCity}}</a>
+                                                                    <a href="" class="menu-items">{{toCity}}</a>
                                                                </li>
-                                                            <li><a href="" class="menu-items"><b>₹ {{flightsData.price}}</b></a></li>
+                                                            <li><a href="" class="menu-items"><b>₹ {{price}}</b></a></li>
                                                     </ul>
                                                 </div>
                                          </div>

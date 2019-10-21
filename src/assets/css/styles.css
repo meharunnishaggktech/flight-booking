@@ -149,6 +149,7 @@ a.active {
 }
 .left-success-info{
   width: 100%;
+  padding-top: 50px;
 }
 .errors{
   font-size: 10px;
@@ -488,3 +489,14 @@ padding-right: 20px;
 .pagination-div{float: right;padding: 9px;}
 .font-size{font-size: medium}
 .font-size-small{font-size: x-small;color: gray;}
+.success-info{text-align: center;padding-top: 38px;}
+
+
+.test li.active {
+  width: 100%;
+  background-color: red!important;
+}
+
+.test li {
+  color: blue;
+}
