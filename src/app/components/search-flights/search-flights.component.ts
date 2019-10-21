@@ -82,8 +82,11 @@ keyword = 'city';
  get user() { return this.registerForm.controls; }
 
  onSubmit() {
-
   this.submitted = true;
+  // stop here if form is invalid
+  // if (this.registerForm.invalid) {
+  //     return;
+  // }
   var dateConverter = this.registerForm.value.departure;
 
   function convert(dateConverter) {

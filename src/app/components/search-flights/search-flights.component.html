@@ -17,27 +17,8 @@
 
                                       </optgroup>
                               </select>
-<!--
-                              <div class="ng-autocomplete" >
-                                    <ng-autocomplete formControlName="fromCity"
-                                      [data]="cities"
-                                      [searchKeyword]="keyword"
-                                      (selected)='selectEvent($event)'
-                                      (inputChanged)='onChangeSearch($event)'
-                                      (inputFocused)='onFocused($event)'
-                                      [itemTemplate]="itemTemplate"
-                                      [notFoundTemplate]="notFoundTemplate">
-                                    </ng-autocomplete>
 
-                                    <ng-template #itemTemplate let-item>
-                                    <a [innerHTML]="item.city"></a>
-                                    </ng-template>
-
-                                    <ng-template #notFoundTemplate let-notFound>
-                                    <div [innerHTML]="notFound"></div>
-                                    </ng-template>
-                                    </div>-->
-                              <div *ngIf="submitted && user.fromCity.errors" class="invalid-feedback errors">
+                              <div *ngIf="submitted && user.fromCity.errors" class="errors">
                                 <div *ngIf="user.fromCity.errors.required" class="errors">From City is required</div>
                              </div>
                               <div class="label-text">TO :</div>
@@ -47,14 +28,14 @@
 
                                       </optgroup>
                               </select>
-                              <div *ngIf="submitted && user.toCity.errors" class="invalid-feedback errors">
+                              <div *ngIf="submitted && user.toCity.errors" class="errors">
                                 <div *ngIf="user.toCity.errors.required" class="errors">To City is required</div>
                              </div>
                               <div class="label-text">DEPARTURE :</div>
 
                               <input type="text" formControlName="departure" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
                                 <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
-                                <div *ngIf="submitted && user.departure.errors" class="invalid-feedback errors">
+                                <div *ngIf="submitted && user.departure.errors" class="errors">
                                   <div *ngIf="user.departure.errors.required" class="errors">To Departure is required</div>
                                </div>
                               <div class="label-text">RETURN :</div>
